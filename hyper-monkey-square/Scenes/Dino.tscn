@@ -1,0 +1,76 @@
+[gd_scene load_steps=14 format=3 uid="uid://b5l0we2uc70j7"]
+
+[ext_resource type="Script" uid="uid://cix6pou526387" path="res://Scripts/Dino.gd" id="1_6fi21"]
+[ext_resource type="Texture2D" uid="uid://clj8h8jk5rfvy" path="res://Images/Dino/Dino.png" id="2_s5bdh"]
+[ext_resource type="Texture2D" uid="uid://dd1m42wf2lwja" path="res://Images/Dino/Dino_Walk_1.png" id="3_0mydp"]
+[ext_resource type="Texture2D" uid="uid://dihos1s3xdjeb" path="res://Images/Dino/Dino_Walk_2.png" id="4_rcf5w"]
+[ext_resource type="Texture2D" uid="uid://b3y38j6vw7x8w" path="res://Images/Dino/Dino_Walk_3.png" id="5_fuypl"]
+[ext_resource type="Script" uid="uid://d00vfpppxhhbl" path="res://Scripts/Dino/dino_animated_sprite_2d.gd" id="6_rcf5w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsir2"]
+size = Vector2(119, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mnhf"]
+atlas = ExtResource("2_s5bdh")
+region = Rect2(0, 0, 433, 577)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1fsi"]
+atlas = ExtResource("3_0mydp")
+region = Rect2(0, 0, 433, 577)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvu02"]
+atlas = ExtResource("4_rcf5w")
+region = Rect2(0, 0, 433, 577)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wpqp"]
+atlas = ExtResource("5_fuypl")
+region = Rect2(0, 0, 433, 577)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl8q1"]
+atlas = ExtResource("2_s5bdh")
+region = Rect2(0, 0, 433, 577)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5bdh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mnhf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1fsi")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_pvu02")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_1wpqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl8q1")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 10.0
+}]
+
+[node name="Dino" type="CharacterBody2D" groups=["Dino"]]
+collision_mask = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_6fi21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7.5)
+shape = SubResource("RectangleShape2D_fsir2")
+
+[node name="DinoAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.302508, 0.302508)
+sprite_frames = SubResource("SpriteFrames_s5bdh")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0470272
+script = ExtResource("6_rcf5w")

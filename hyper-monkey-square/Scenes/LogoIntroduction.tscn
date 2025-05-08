@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvkgsfoyif1mc"]
+
+[ext_resource type="Texture2D" uid="uid://cyv4wvgvt4jj1" path="res://Images/VeGGi3 YouTube Image.png" id="1_er7b2"]
+[ext_resource type="Script" uid="uid://bkwc27j515r2t" path="res://Scripts/logo_introduction.gd" id="1_wvmqg"]
+
+[node name="LogoIntroduction" type="Node2D"]
+script = ExtResource("1_wvmqg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = -1.0
+offset_right = 1272.0
+offset_bottom = 734.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_er7b2")
+
+[node name="GoToMenu" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="GoToMenu" to="." method="_on_go_to_menu_timeout"]

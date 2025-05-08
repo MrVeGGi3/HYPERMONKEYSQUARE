@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3c5s00vgwaps"]
+
+[ext_resource type="Texture2D" uid="uid://da7pe2halheb8" path="res://Images/Goal_Finished.png" id="1_3onic"]
+[ext_resource type="Script" uid="uid://23pgyxw0lt8t" path="res://Scripts/Itens/finish_circle.gd" id="1_fc6u4"]
+[ext_resource type="Texture2D" uid="uid://b0turmah2kxif" path="res://Images/TimerBase.png" id="3_3hypu"]
+[ext_resource type="Script" uid="uid://cptp7kqvnsoh0" path="res://Scripts/Itens/circle_timer.gd" id="4_7m4cu"]
+[ext_resource type="FontFile" uid="uid://bwqb8pdud3bgi" path="res://Assets/Font/digital-7.ttf" id="4_w0gcn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc6u4"]
+size = Vector2(83, 92)
+
+[node name="FinishCircle" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_fc6u4")
+
+[node name="CircleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_3onic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 123)
+shape = SubResource("RectangleShape2D_fc6u4")
+
+[node name="TimerSprite" type="Sprite2D" parent="."]
+position = Vector2(1, -132)
+texture = ExtResource("3_3hypu")
+script = ExtResource("4_7m4cu")
+
+[node name="SecondsLabel" type="Label" parent="TimerSprite"]
+offset_left = -68.0
+offset_top = -32.0
+offset_right = 1.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("4_w0gcn")
+theme_override_font_sizes/font_size = 60
+text = "30"
+
+[node name="MiliSecondsLabel" type="Label" parent="TimerSprite"]
+offset_left = 14.0
+offset_top = -31.0
+offset_right = 71.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("4_w0gcn")
+theme_override_font_sizes/font_size = 60
+text = "00"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

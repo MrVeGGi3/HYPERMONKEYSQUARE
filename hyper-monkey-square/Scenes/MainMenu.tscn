@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://by2f61ct3k5ab"]
+
+[ext_resource type="Script" uid="uid://jmey5dpk1bbv" path="res://Scripts/main_menu.gd" id="1_8saeu"]
+[ext_resource type="Theme" uid="uid://2h34o6dyfay6" path="res://Themes/MenuButton.tres" id="1_853f1"]
+[ext_resource type="Texture2D" uid="uid://dysmfilmah34o" path="res://Images/HyperDinoSquareLOGO.png" id="1_tt5f1"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8saeu")
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 472.0
+offset_right = 798.0
+offset_bottom = 535.0
+theme = ExtResource("1_853f1")
+text = "Start Game"
+
+[node name="Options" type="Button" parent="."]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 562.0
+offset_right = 715.0
+offset_bottom = 611.0
+theme = ExtResource("1_853f1")
+text = "Options"
+
+[node name="Main Logo" type="Sprite2D" parent="."]
+position = Vector2(580, 280)
+texture = ExtResource("1_tt5f1")
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]

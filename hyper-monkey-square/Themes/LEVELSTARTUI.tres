@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://lap84xs1taql"]
+
+[ext_resource type="FontFile" uid="uid://cw2hahl38r837" path="res://Assets/Font/Ash.ttf" id="1_4x8sa"]
+
+[resource]
+Label/colors/font_color = Color(1, 1, 0, 1)
+Label/font_sizes/font_size = 90
+Label/fonts/font = ExtResource("1_4x8sa")
