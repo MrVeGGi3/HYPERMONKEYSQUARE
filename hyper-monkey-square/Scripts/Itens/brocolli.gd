@@ -5,6 +5,7 @@ extends Area2D
 func _on_body_entered(body: Dino) -> void:
 	GameManager.brocolli += 1
 	brocolli_animation.play("brocolli_catched")
+	body.eatSound()
 	
 
 

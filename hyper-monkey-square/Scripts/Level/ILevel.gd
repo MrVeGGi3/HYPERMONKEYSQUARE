@@ -14,7 +14,6 @@ func Save():
 	var path = "user://level%d.json" % level_number
 	var data = {
 		"number_level" : level_number,
-		"brocolli_collected" : brocolli_collected,
 		"level_score" : score_level,
 		"record_timer" : time_record,
 		"phase_concluded?" : phase_concluded	

@@ -1,13 +1,34 @@
-[gd_scene load_steps=9 format=4 uid="uid://cpdo5smb78a24"]
+[gd_scene load_steps=40 format=4 uid="uid://cpdo5smb78a24"]
 
 [ext_resource type="Script" uid="uid://djoy2ffdlwth8" path="res://Scripts/Levels/level_1.gd" id="1_kk0y7"]
 [ext_resource type="Texture2D" uid="uid://q53oey3odbr" path="res://Images/Platform1.png" id="2_cn511"]
 [ext_resource type="PackedScene" uid="uid://b3c5s00vgwaps" path="res://Scenes/FinishCircle.tscn" id="3_vpbov"]
 [ext_resource type="PackedScene" uid="uid://b5l0we2uc70j7" path="res://Scenes/Dino.tscn" id="4_7fme0"]
-[ext_resource type="PackedScene" uid="uid://b7fifx6rirvv2" path="res://Scenes/UI/MainUI.tscn" id="5_fv3ly"]
+[ext_resource type="Script" uid="uid://bxvcwy8i8lspu" path="res://Scripts/UI/level_name.gd" id="5_5mc25"]
+[ext_resource type="FontFile" uid="uid://cw2hahl38r837" path="res://Assets/Font/Ash.ttf" id="6_5jtvf"]
+[ext_resource type="Texture2D" uid="uid://by4l2e7ljjdwu" path="res://Assets/Image/GameCube - Super Monkey Ball - Difficulty Icons.png" id="7_in0pc"]
+[ext_resource type="Script" uid="uid://bv64o5qcwws5w" path="res://Scripts/UI/velocimeter.gd" id="8_f38bb"]
+[ext_resource type="Script" uid="uid://b8boxvyrmo1al" path="res://Scripts/UI/score.gd" id="9_os3o5"]
+[ext_resource type="Script" uid="uid://bdk2gnmo51sxo" path="res://Scripts/level_timer.gd" id="10_x7pk8"]
+[ext_resource type="Texture2D" uid="uid://c108na03v8agm" path="res://Images/Bomba UI.png" id="11_d33hx"]
+[ext_resource type="FontFile" uid="uid://bwqb8pdud3bgi" path="res://Assets/Font/digital-7.ttf" id="12_isg1u"]
+[ext_resource type="AudioStream" uid="uid://c2x5kfyqi6arg" path="res://Assets/Audios/SFX/Timer.wav" id="13_b3kcm"]
+[ext_resource type="Script" uid="uid://b5ou2mcbehrk7" path="res://Scripts/UI/brocolli_counter.gd" id="14_3bljx"]
+[ext_resource type="Texture2D" uid="uid://cdi3ejoqnxm7n" path="res://Images/Brocolli.png" id="15_lvxru"]
+[ext_resource type="Script" uid="uid://jin1bc3l7che" path="res://Scripts/level_start_anim.gd" id="16_3y175"]
+[ext_resource type="Script" uid="uid://b81kumin6musd" path="res://Scripts/animation_letters.gd" id="17_j1j4q"]
+[ext_resource type="Theme" uid="uid://lap84xs1taql" path="res://Themes/LEVELSTARTUI.tres" id="18_6p7gy"]
+[ext_resource type="AudioStream" uid="uid://2mcbfi1rku8a" path="res://Assets/Audios/SFX/READY.wav" id="19_vek64"]
+[ext_resource type="Theme" uid="uid://dubfyu42u31p6" path="res://Themes/GO!.tres" id="20_ichig"]
+[ext_resource type="AudioStream" uid="uid://dm3spdxnu8va4" path="res://Assets/Audios/SFX/GOI.wav" id="21_wbydt"]
+[ext_resource type="FontFile" uid="uid://bpttgqt2gts1l" path="res://Assets/Font/Equalize.ttf" id="22_mttsk"]
+[ext_resource type="AudioStream" uid="uid://tqrtma52qff1" path="res://Assets/Audios/SFX/GOAL.wav" id="23_sfi1e"]
+[ext_resource type="PackedScene" uid="uid://ltj45qs37ygm" path="res://Scenes/Brocolli.tscn" id="24_5jtvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u47ps"]
 size = Vector2(851.5, 46.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fv3ly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpbov"]
 texture = ExtResource("2_cn511")
@@ -142,7 +163,566 @@ texture = ExtResource("2_cn511")
 42:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7fme0"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_fv3ly")
 sources/0 = SubResource("TileSetAtlasSource_vpbov")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cpe4"]
+atlas = ExtResource("7_in0pc")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yftfo"]
+atlas = ExtResource("7_in0pc")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upwrp"]
+atlas = ExtResource("7_in0pc")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxqpb"]
+atlas = ExtResource("7_in0pc")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1kow2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cpe4")
+}],
+"loop": true,
+"name": &"advanced",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yftfo")
+}],
+"loop": true,
+"name": &"begginer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upwrp")
+}],
+"loop": true,
+"name": &"expert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxqpb")
+}],
+"loop": true,
+"name": &"master",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_0qsyn"]
+resource_name = "GO"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Ready:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/GO:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters/GO:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1.36604),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/GO:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-461, -124)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationLetters/GO/GOSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qsyrj"]
+resource_name = "GOAL"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Ready:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/GO:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/GOAL/GOALSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1kow2"]
+resource_name = "READY"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Ready/ReadyLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(255, 117), Vector2(246, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/Ready/READYSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters/GO:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/Ready:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationLetters:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(-0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mxqpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Ready:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/GO:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationLetters/GOAL/GOALSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_upwrp"]
+resource_name = "level_start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters/F2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Letters/L2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/Letters/L2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(70, 10), Vector2(205, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters/Letters/O3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/Letters/O3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.03, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(70, 10), Vector2(360, 10), Vector2(340, 10)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationLetters/Letters/O4:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/Letters/O4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(70, 10), Vector2(475, 10)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationLetters/Letters/R2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationLetters/Letters/R2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(124, 10), Vector2(610, 10)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AnimationLetters/Letters/F2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, 10)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimationLetters/Letters/LevelNumber:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.0333333, 4.36667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationLetters/Letters/LevelNumber:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(70, 10), Vector2(800, 10)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AnimationLetters/Ready:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AnimationLetters/Letters:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxqpb"]
+_data = {
+&"GO": SubResource("Animation_0qsyn"),
+&"GOAL": SubResource("Animation_qsyrj"),
+&"READY": SubResource("Animation_1kow2"),
+&"RESET": SubResource("Animation_mxqpb"),
+&"level_start": SubResource("Animation_upwrp")
+}
 
 [node name="Level!" type="Node2D"]
 script = ExtResource("1_kk0y7")
@@ -164,7 +744,306 @@ tile_set = SubResource("TileSet_7fme0")
 position = Vector2(899, 304)
 
 [node name="Dino" parent="." instance=ExtResource("4_7fme0")]
-position = Vector2(198, 386)
+position = Vector2(203, 388)
 collision_mask = 14
+platform_floor_layers = 4294967042
+platform_wall_layers = 2
+max_speed = 200.0
+acceleration_rate = 0.3
 
-[node name="MainUi" parent="." instance=ExtResource("5_fv3ly")]
+[node name="MainUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelName" type="Control" parent="MainUi"]
+anchors_preset = 0
+offset_left = 49.0
+offset_top = 424.0
+offset_right = 449.0
+offset_bottom = 624.0
+script = ExtResource("5_5mc25")
+
+[node name="LevelNameLabel" type="Label" parent="MainUi/LevelName"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 164.0
+offset_right = 319.0
+offset_bottom = 199.0
+theme_override_fonts/font = ExtResource("6_5jtvf")
+theme_override_font_sizes/font_size = 30
+text = "FLOOR 4"
+
+[node name="Difficulty" type="AnimatedSprite2D" parent="MainUi/LevelName"]
+position = Vector2(74, 178)
+scale = Vector2(0.729813, 0.729813)
+sprite_frames = SubResource("SpriteFrames_1kow2")
+animation = &"begginer"
+autoplay = "begginer"
+
+[node name="Velocimeter" type="Control" parent="MainUi"]
+anchors_preset = 0
+offset_left = 165.0
+offset_top = 533.0
+offset_right = 205.0
+offset_bottom = 573.0
+script = ExtResource("8_f38bb")
+
+[node name="VelocimeterLabel" type="Label" parent="MainUi/Velocimeter"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 9.0
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 25
+text = "15 mps"
+
+[node name="Score" type="Control" parent="MainUi"]
+anchors_preset = 0
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 68.0
+script = ExtResource("9_os3o5")
+
+[node name="ScoreText" type="Label" parent="MainUi/Score"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 10.0
+offset_right = 215.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("6_5jtvf")
+text = "SCORE"
+
+[node name="TotalScoreLabel" type="Label" parent="MainUi/Score"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 32.0
+offset_right = 170.0
+offset_bottom = 55.0
+theme_override_fonts/font = ExtResource("6_5jtvf")
+theme_override_font_sizes/font_size = 15
+
+[node name="Timer" type="Control" parent="MainUi"]
+anchors_preset = 0
+offset_left = 514.0
+offset_top = 39.0
+offset_right = 554.0
+offset_bottom = 79.0
+script = ExtResource("10_x7pk8")
+
+[node name="Bomb" type="Sprite2D" parent="MainUi/Timer"]
+position = Vector2(46, 78)
+scale = Vector2(0.406047, 0.406047)
+texture = ExtResource("11_d33hx")
+
+[node name="TimerLabel" type="Label" parent="MainUi/Timer"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 51.0
+offset_right = 135.0
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("12_isg1u")
+theme_override_font_sizes/font_size = 90
+text = "60"
+
+[node name="TimerCentiLabel" type="Label" parent="MainUi/Timer"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 86.0
+offset_right = 150.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("12_isg1u")
+theme_override_font_sizes/font_size = 40
+text = "00"
+
+[node name="TimerBIP" type="AudioStreamPlayer" parent="MainUi/Timer"]
+stream = ExtResource("13_b3kcm")
+volume_db = -30.0
+
+[node name="BrocolliCounter" type="Control" parent="MainUi"]
+anchors_preset = 0
+offset_left = 101.0
+offset_top = 18.0
+offset_right = 141.0
+offset_bottom = 58.0
+script = ExtResource("14_3bljx")
+
+[node name="Brocolli" type="Label" parent="MainUi/BrocolliCounter"]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 11.0
+offset_right = 1098.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_5jtvf")
+theme_override_font_sizes/font_size = 30
+text = "Brocolli"
+
+[node name="Brocolli2" type="Sprite2D" parent="MainUi/BrocolliCounter"]
+position = Vector2(734, 38)
+scale = Vector2(0.179809, 0.179809)
+texture = ExtResource("15_lvxru")
+
+[node name="BrocCounterLabel" type="Label" parent="MainUi/BrocolliCounter"]
+layout_mode = 0
+offset_left = 828.0
+offset_top = 49.0
+offset_right = 973.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.144036, 0.792697, 0.85189, 1)
+theme_override_fonts/font = ExtResource("6_5jtvf")
+theme_override_font_sizes/font_size = 25
+text = "10 / 100"
+
+[node name="LevelStart" type="AnimationPlayer" parent="MainUi"]
+libraries = {
+&"": SubResource("AnimationLibrary_mxqpb")
+}
+script = ExtResource("16_3y175")
+
+[node name="AnimationLetters" type="Control" parent="MainUi"]
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 265.0
+offset_right = 1100.0
+offset_bottom = 415.0
+script = ExtResource("17_j1j4q")
+
+[node name="Letters" type="Control" parent="MainUi/AnimationLetters"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="F2" type="Label" parent="MainUi/AnimationLetters/Letters"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 156.0
+offset_bottom = 112.0
+theme = ExtResource("18_6p7gy")
+text = "F"
+
+[node name="L2" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 156.0
+offset_bottom = 112.0
+theme = ExtResource("18_6p7gy")
+text = "L"
+
+[node name="O3" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 169.0
+offset_bottom = 217.0
+theme = ExtResource("18_6p7gy")
+text = "O
+"
+
+[node name="O4" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 169.0
+offset_bottom = 217.0
+theme = ExtResource("18_6p7gy")
+text = "O
+"
+
+[node name="R2" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
+layout_mode = 0
+offset_left = 124.0
+offset_top = 10.0
+offset_right = 227.0
+offset_bottom = 217.0
+theme = ExtResource("18_6p7gy")
+text = "R
+"
+
+[node name="LevelNumber" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 123.0
+offset_bottom = 217.0
+theme = ExtResource("18_6p7gy")
+text = "1"
+
+[node name="Ready" type="Control" parent="MainUi/AnimationLetters"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ReadyLabel" type="Label" parent="MainUi/AnimationLetters/Ready"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 117.0
+offset_right = 744.0
+offset_bottom = 219.0
+theme = ExtResource("18_6p7gy")
+text = "READY"
+
+[node name="READYSFX" type="AudioStreamPlayer" parent="MainUi/AnimationLetters/Ready"]
+stream = ExtResource("19_vek64")
+
+[node name="GO" type="Control" parent="MainUi/AnimationLetters"]
+visible = false
+anchors_preset = 0
+offset_left = -461.0
+offset_top = -124.0
+offset_right = -421.0
+offset_bottom = -84.0
+
+[node name="GOLabel" type="Label" parent="MainUi/AnimationLetters/GO"]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 41.0
+offset_right = 542.0
+offset_bottom = 142.0
+theme = ExtResource("20_ichig")
+text = "GO!"
+
+[node name="GOSFX" type="AudioStreamPlayer" parent="MainUi/AnimationLetters/GO"]
+stream = ExtResource("21_wbydt")
+
+[node name="GOAL" type="Control" parent="MainUi/AnimationLetters"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GOALabel" type="Label" parent="MainUi/AnimationLetters/GOAL"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 103.0
+offset_right = 680.0
+offset_bottom = 186.0
+theme_override_colors/font_color = Color(0.383066, 0.00187537, 0.732672, 1)
+theme_override_fonts/font = ExtResource("22_mttsk")
+theme_override_font_sizes/font_size = 60
+text = "GOAL!!!"
+
+[node name="GOALSFX" type="AudioStreamPlayer" parent="MainUi/AnimationLetters/GOAL"]
+stream = ExtResource("23_sfi1e")
+volume_db = -10.0
+
+[node name="Brocolli" type="Node2D" parent="."]
+
+[node name="Brocolli" parent="Brocolli" instance=ExtResource("24_5jtvf")]
+
+[node name="Brocolli2" parent="Brocolli" instance=ExtResource("24_5jtvf")]
+
+[node name="Brocolli3" parent="Brocolli" instance=ExtResource("24_5jtvf")]
+
+[connection signal="animation_finished" from="MainUi/LevelStart" to="MainUi/LevelStart" method="_on_animation_finished"]

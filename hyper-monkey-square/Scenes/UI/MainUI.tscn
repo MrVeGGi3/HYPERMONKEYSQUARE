@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b7fifx6rirvv2"]
+[gd_scene load_steps=31 format=3 uid="uid://b7fifx6rirvv2"]
 
 [ext_resource type="FontFile" uid="uid://cw2hahl38r837" path="res://Assets/Font/Ash.ttf" id="1_58co4"]
 [ext_resource type="Script" uid="uid://bxvcwy8i8lspu" path="res://Scripts/UI/level_name.gd" id="1_xuwth"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://2mcbfi1rku8a" path="res://Assets/Audios/SFX/READY.wav" id="9_7uoew"]
 [ext_resource type="Script" uid="uid://b5ou2mcbehrk7" path="res://Scripts/UI/brocolli_counter.gd" id="10_kshw1"]
 [ext_resource type="AudioStream" uid="uid://dm3spdxnu8va4" path="res://Assets/Audios/SFX/GOI.wav" id="11_tt03y"]
+[ext_resource type="FontFile" uid="uid://bpttgqt2gts1l" path="res://Assets/Font/Equalize.ttf" id="18_lqhis"]
+[ext_resource type="AudioStream" uid="uid://tqrtma52qff1" path="res://Assets/Audios/SFX/GOAL.wav" id="19_qsyrj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cpe4"]
 atlas = ExtResource("2_52ctl")
@@ -144,6 +146,81 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qsyrj"]
+resource_name = "GOAL"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Ready:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/GO:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/GOAL/GOALSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1kow2"]
 resource_name = "READY"
@@ -219,6 +296,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_mxqpb"]
 length = 0.001
@@ -269,6 +358,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationLetters/GOAL/GOALSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_upwrp"]
@@ -442,10 +555,23 @@ tracks/13/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxqpb"]
 _data = {
 &"GO": SubResource("Animation_0qsyn"),
+&"GOAL": SubResource("Animation_qsyrj"),
 &"READY": SubResource("Animation_1kow2"),
 &"RESET": SubResource("Animation_mxqpb"),
 &"level_start": SubResource("Animation_upwrp")
@@ -717,5 +843,25 @@ text = "GO!"
 
 [node name="GOSFX" type="AudioStreamPlayer" parent="AnimationLetters/GO"]
 stream = ExtResource("11_tt03y")
+
+[node name="GOAL" type="Control" parent="AnimationLetters"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GOALabel" type="Label" parent="AnimationLetters/GOAL"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 103.0
+offset_right = 680.0
+offset_bottom = 186.0
+theme_override_colors/font_color = Color(0.383066, 0.00187537, 0.732672, 1)
+theme_override_fonts/font = ExtResource("18_lqhis")
+theme_override_font_sizes/font_size = 60
+text = "GOAL!!!"
+
+[node name="GOALSFX" type="AudioStreamPlayer" parent="AnimationLetters/GOAL"]
+stream = ExtResource("19_qsyrj")
+volume_db = -10.0
 
 [connection signal="animation_finished" from="LevelStart" to="LevelStart" method="_on_animation_finished"]

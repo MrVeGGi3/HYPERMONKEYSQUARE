@@ -20,6 +20,7 @@ var time_record : float #Recorde máximo de tempo
 var seconds
 var centisec
 var time_passed
+var level_finished : bool = false
 
 	
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5l0we2uc70j7"]
+[gd_scene load_steps=15 format=3 uid="uid://b5l0we2uc70j7"]
 
 [ext_resource type="Script" uid="uid://cix6pou526387" path="res://Scripts/Dino.gd" id="1_6fi21"]
 [ext_resource type="Texture2D" uid="uid://clj8h8jk5rfvy" path="res://Images/Dino/Dino.png" id="2_s5bdh"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dihos1s3xdjeb" path="res://Images/Dino/Dino_Walk_2.png" id="4_rcf5w"]
 [ext_resource type="Texture2D" uid="uid://b3y38j6vw7x8w" path="res://Images/Dino/Dino_Walk_3.png" id="5_fuypl"]
 [ext_resource type="Script" uid="uid://d00vfpppxhhbl" path="res://Scripts/Dino/dino_animated_sprite_2d.gd" id="6_rcf5w"]
+[ext_resource type="AudioStream" uid="uid://c6ksip7rpuhy7" path="res://Assets/Audios/SFX/DinoEat.wav" id="7_fuypl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsir2"]
-size = Vector2(119, 153)
+size = Vector2(119, 152)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mnhf"]
 atlas = ExtResource("2_s5bdh")
@@ -64,7 +65,7 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_6fi21")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 7.5)
+position = Vector2(0.5, 7)
 shape = SubResource("RectangleShape2D_fsir2")
 
 [node name="DinoAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -74,3 +75,6 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.0470272
 script = ExtResource("6_rcf5w")
+
+[node name="Eat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fuypl")

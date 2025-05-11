@@ -1,5 +1,6 @@
 extends AnimationPlayer
 
+@onready var level_animator: AnimationPlayer = $"."
 
 func _ready() -> void:
 	play("level_start")
@@ -11,4 +12,9 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		play("GO")
 	elif anim_name == "GO":
 		GameManager.can_start_timer = true
+
+func onGoalReached():
+	play("GOAL")
+
+
 		
