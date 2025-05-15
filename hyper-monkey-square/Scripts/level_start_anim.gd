@@ -22,15 +22,11 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		GameManager._calculate_score()
 		play("SCORE")
 	elif anim_name == "SCORE":
-		add_score()
 		level_generator.selectNextLevel(GameManager.actual_level)
 	elif anim_name == "TIMEOVER":
 		GameManager.lifes -= 1
 		get_tree().reload_current_scene()
 		
-		
-func add_score():
-	GameManager.total_score += GameManager.actual_level_score * GameManager.score_multiplier
 
 func onGoalReached():
 	play("GOAL")

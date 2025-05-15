@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://djoy2ffdlwth8" path="res://Scripts/Levels/level_1.gd" id="1_kk0y7"]
 [ext_resource type="Texture2D" uid="uid://q53oey3odbr" path="res://Images/Platform1.png" id="2_cn511"]
-[ext_resource type="PackedScene" uid="uid://b3c5s00vgwaps" path="res://Scenes/FinishCircle.tscn" id="3_vpbov"]
-[ext_resource type="PackedScene" uid="uid://b5l0we2uc70j7" path="res://Scenes/Dino.tscn" id="4_7fme0"]
+[ext_resource type="PackedScene" uid="uid://b3c5s00vgwaps" path="res://Scenes/Player/FinishCircle.tscn" id="3_vpbov"]
+[ext_resource type="PackedScene" uid="uid://b5l0we2uc70j7" path="res://Scenes/Player/Dino.tscn" id="4_7fme0"]
 [ext_resource type="Script" uid="uid://bxvcwy8i8lspu" path="res://Scripts/UI/level_name.gd" id="5_5mc25"]
 [ext_resource type="FontFile" uid="uid://cw2hahl38r837" path="res://Assets/Font/Ash.ttf" id="6_5jtvf"]
 [ext_resource type="Texture2D" uid="uid://by4l2e7ljjdwu" path="res://Assets/Image/GameCube - Super Monkey Ball - Difficulty Icons.png" id="7_in0pc"]
@@ -660,6 +660,34 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.180392)]
 }
 
+[sub_resource type="Animation" id="Animation_abx7t"]
+resource_name = "TIMEOVER"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimeOver:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.695378, 0.793057, 0.883758, 0.966667, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeOver/TimeOver:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_upwrp"]
 resource_name = "level_start"
 length = 3.5
@@ -856,34 +884,6 @@ tracks/15/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_abx7t"]
-resource_name = "TIMEOVER"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TimeOver:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.695378, 0.793057, 0.883758, 0.966667, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TimeOver/TimeOver:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxqpb"]
 _data = {
 &"GO": SubResource("Animation_0qsyn"),
@@ -904,8 +904,6 @@ position = Vector2(899, 304)
 [node name="Dino" parent="." instance=ExtResource("4_7fme0")]
 position = Vector2(204, 387)
 disable_mode = 1
-max_speed = 200.0
-acceleration_rate = 0.3
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(158, 488)

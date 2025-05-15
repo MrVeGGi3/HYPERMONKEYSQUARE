@@ -4,9 +4,9 @@ extends CharacterBody2D
 
 @export_group("Propriedades Físicas do Jogador")
 @export_range(10,400,10)
-var max_speed : float 
+var max_speed : float = 200
 @export_range(0,1,0.1)
-var acceleration_rate : float = 0.5
+var acceleration_rate : float = 0.2
 @export_range(0,1,0.1)
 var desaceleration_rate : float = 0.3
 
