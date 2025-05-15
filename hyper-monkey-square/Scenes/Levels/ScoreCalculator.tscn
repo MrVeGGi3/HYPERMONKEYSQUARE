@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://scluv1pkvog5"]
+
+[ext_resource type="Script" uid="uid://jbm24b8t2gvo" path="res://Scripts/Level/score_calculator.gd" id="1_b0iak"]
+
+[node name="ScoreCalculator" type="Node"]
+script = ExtResource("1_b0iak")

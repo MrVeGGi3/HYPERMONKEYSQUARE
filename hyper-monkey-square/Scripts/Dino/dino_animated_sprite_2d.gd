@@ -7,14 +7,17 @@ func _ready() -> void:
 	
 
 func _dinoAnimation(state):
-	match state:
-		dino.State.IDLE:
-			play("idle")
-		dino.State.WALKING:
-			play("walking")
+	if state == dino.State.HAPPY:
+		play("happy")	
 	
-	if dino.velocity.x > 0:
-		flip_h = false
-	elif dino.velocity.x < 0:
-		flip_h = true
-		
+	elif dino.is_physics_processing():
+		match state:
+			dino.State.IDLE:
+				play("idle")
+			dino.State.WALKING:
+				play("walking")
+				if dino.velocity.x > 0:
+					flip_h = false
+				elif dino.velocity.x < 0:
+					flip_h = true
+			

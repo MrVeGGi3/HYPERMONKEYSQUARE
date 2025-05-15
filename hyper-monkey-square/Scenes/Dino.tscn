@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5l0we2uc70j7"]
+[gd_scene load_steps=20 format=3 uid="uid://b5l0we2uc70j7"]
 
 [ext_resource type="Script" uid="uid://cix6pou526387" path="res://Scripts/Dino.gd" id="1_6fi21"]
+[ext_resource type="Texture2D" uid="uid://bett1cpbgjj1h" path="res://Images/Dino/Happy/Dinossauro_Comemorando_-_1-.png" id="2_1wpqp"]
 [ext_resource type="Texture2D" uid="uid://clj8h8jk5rfvy" path="res://Images/Dino/Dino.png" id="2_s5bdh"]
 [ext_resource type="Texture2D" uid="uid://dd1m42wf2lwja" path="res://Images/Dino/Dino_Walk_1.png" id="3_0mydp"]
+[ext_resource type="Texture2D" uid="uid://dlmyjhp1soqe" path="res://Images/Dino/Happy/Dinossauro_Comemorando_-_2.png" id="3_pl8q1"]
+[ext_resource type="Texture2D" uid="uid://byqnkndbe76mo" path="res://Images/Dino/Happy/Dinossauro_Comemorando_-_3.png" id="4_huul5"]
 [ext_resource type="Texture2D" uid="uid://dihos1s3xdjeb" path="res://Images/Dino/Dino_Walk_2.png" id="4_rcf5w"]
 [ext_resource type="Texture2D" uid="uid://b3y38j6vw7x8w" path="res://Images/Dino/Dino_Walk_3.png" id="5_fuypl"]
 [ext_resource type="Script" uid="uid://d00vfpppxhhbl" path="res://Scripts/Dino/dino_animated_sprite_2d.gd" id="6_rcf5w"]
@@ -10,6 +13,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsir2"]
 size = Vector2(119, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ees7a"]
+atlas = ExtResource("2_1wpqp")
+region = Rect2(0, 0, 433, 577)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2wi0"]
+atlas = ExtResource("3_pl8q1")
+region = Rect2(0, 0, 433, 577)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mnhf"]
 atlas = ExtResource("2_s5bdh")
@@ -33,6 +44,26 @@ region = Rect2(0, 0, 433, 577)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s5bdh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ees7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2wi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_huul5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2wi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ees7a")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4mnhf")
@@ -60,8 +91,9 @@ animations = [{
 }]
 
 [node name="Dino" type="CharacterBody2D" groups=["Dino"]]
-collision_mask = 2
-platform_floor_layers = 4294967040
+collision_mask = 14
+platform_floor_layers = 4294967042
+platform_wall_layers = 2
 script = ExtResource("1_6fi21")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -71,9 +103,10 @@ shape = SubResource("RectangleShape2D_fsir2")
 [node name="DinoAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.302508, 0.302508)
 sprite_frames = SubResource("SpriteFrames_s5bdh")
-animation = &"idle"
+animation = &"happy"
 autoplay = "idle"
-frame_progress = 0.0470272
+frame = 4
+frame_progress = 0.673091
 script = ExtResource("6_rcf5w")
 
 [node name="Eat" type="AudioStreamPlayer" parent="."]

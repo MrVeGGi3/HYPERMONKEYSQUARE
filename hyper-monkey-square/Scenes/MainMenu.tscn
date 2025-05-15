@@ -22,15 +22,6 @@ offset_bottom = 535.0
 theme = ExtResource("1_853f1")
 text = "Start Game"
 
-[node name="Options" type="Button" parent="."]
-layout_mode = 0
-offset_left = 461.0
-offset_top = 562.0
-offset_right = 715.0
-offset_bottom = 611.0
-theme = ExtResource("1_853f1")
-text = "Options"
-
 [node name="Main Logo" type="Sprite2D" parent="."]
 position = Vector2(580, 280)
 texture = ExtResource("1_tt5f1")

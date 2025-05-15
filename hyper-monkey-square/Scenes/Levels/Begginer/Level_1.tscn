@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cpdo5smb78a24"]
+[gd_scene load_steps=47 format=4 uid="uid://cpdo5smb78a24"]
 
 [ext_resource type="Script" uid="uid://djoy2ffdlwth8" path="res://Scripts/Levels/level_1.gd" id="1_kk0y7"]
 [ext_resource type="Texture2D" uid="uid://q53oey3odbr" path="res://Images/Platform1.png" id="2_cn511"]
@@ -23,7 +23,12 @@
 [ext_resource type="AudioStream" uid="uid://dm3spdxnu8va4" path="res://Assets/Audios/SFX/GOI.wav" id="21_wbydt"]
 [ext_resource type="FontFile" uid="uid://bpttgqt2gts1l" path="res://Assets/Font/Equalize.ttf" id="22_mttsk"]
 [ext_resource type="AudioStream" uid="uid://tqrtma52qff1" path="res://Assets/Audios/SFX/GOAL.wav" id="23_sfi1e"]
-[ext_resource type="PackedScene" uid="uid://ltj45qs37ygm" path="res://Scenes/Brocolli.tscn" id="24_5jtvf"]
+[ext_resource type="AudioStream" uid="uid://dcytqnmwxbv6v" path="res://Assets/Audios/SFX/YAHOOO.wav" id="24_os3o5"]
+[ext_resource type="Script" uid="uid://byx08i5aodp1g" path="res://Scripts/UI/level_score.gd" id="25_in0pc"]
+[ext_resource type="PackedScene" uid="uid://cjd6qeskdm2g1" path="res://Scenes/Levels/LevelGenerator.tscn" id="26_f38bb"]
+[ext_resource type="AudioStream" uid="uid://dofryk26vyays" path="res://Assets/Audios/SFX/TimeOver.wav" id="27_d33hx"]
+[ext_resource type="PackedScene" uid="uid://dyuw6wqrdbwcw" path="res://Scenes/UI/Lifes.tscn" id="27_os3o5"]
+[ext_resource type="PackedScene" uid="uid://scluv1pkvog5" path="res://Scenes/Levels/ScoreCalculator.tscn" id="28_x7pk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u47ps"]
 size = Vector2(851.5, 46.5)
@@ -305,9 +310,22 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LevelScore:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qsyrj"]
 resource_name = "GOAL"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -364,6 +382,30 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelScore:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GOAL/YAHOO:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.933333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -455,6 +497,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LevelScore:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(-0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_mxqpb"]
 length = 0.001
@@ -516,12 +570,12 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AnimationLetters/GOAL/GOALSFX:playing")
+tracks/5/path = NodePath("LevelScore:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -530,10 +584,85 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GOAL/YAHOO:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TimeOver:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TimeOver/TimeOver:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2v25o"]
+resource_name = "SCORE"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelScore:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LevelScore:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.933333),
+"transitions": PackedFloat32Array(1.93187, 2.07053),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.180392)]
+}
 
 [sub_resource type="Animation" id="Animation_upwrp"]
 resource_name = "level_start"
-length = 5.0
+length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -553,7 +682,7 @@ tracks/1/path = NodePath("AnimationLetters/Letters/L2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.366667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -565,7 +694,7 @@ tracks/2/path = NodePath("AnimationLetters/Letters/L2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.03333),
+"times": PackedFloat32Array(0, 0.633333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(70, 10), Vector2(205, 10)]
@@ -577,7 +706,7 @@ tracks/3/path = NodePath("AnimationLetters/Letters/O3:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.3),
+"times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -589,10 +718,10 @@ tracks/4/path = NodePath("AnimationLetters/Letters/O3:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.03, 2.03333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.16667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(70, 10), Vector2(360, 10), Vector2(340, 10)]
+"values": [Vector2(70, 10), Vector2(340, 10)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -601,7 +730,7 @@ tracks/5/path = NodePath("AnimationLetters/Letters/O4:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.33333),
+"times": PackedFloat32Array(0, 1.43333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -613,7 +742,7 @@ tracks/6/path = NodePath("AnimationLetters/Letters/O4:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2.96667),
+"times": PackedFloat32Array(0, 1.86667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(70, 10), Vector2(475, 10)]
@@ -625,7 +754,7 @@ tracks/7/path = NodePath("AnimationLetters/Letters/R2:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 3.26667),
+"times": PackedFloat32Array(0, 2.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -637,7 +766,7 @@ tracks/8/path = NodePath("AnimationLetters/Letters/R2:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 4.03333),
+"times": PackedFloat32Array(0, 2.56667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(124, 10), Vector2(610, 10)]
@@ -661,7 +790,7 @@ tracks/10/path = NodePath("AnimationLetters/Letters/LevelNumber:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0.0333333, 4.36667),
+"times": PackedFloat32Array(0.0333333, 2.93333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -673,7 +802,7 @@ tracks/11/path = NodePath("AnimationLetters/Letters/LevelNumber:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 3.36667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(70, 10), Vector2(800, 10)]
@@ -714,6 +843,46 @@ tracks/14/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("LevelScore:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_abx7t"]
+resource_name = "TIMEOVER"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimeOver:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.695378, 0.793057, 0.883758, 0.966667, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeOver/TimeOver:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxqpb"]
 _data = {
@@ -721,11 +890,22 @@ _data = {
 &"GOAL": SubResource("Animation_qsyrj"),
 &"READY": SubResource("Animation_1kow2"),
 &"RESET": SubResource("Animation_mxqpb"),
+&"SCORE": SubResource("Animation_2v25o"),
+&"TIMEOVER": SubResource("Animation_abx7t"),
 &"level_start": SubResource("Animation_upwrp")
 }
 
-[node name="Level!" type="Node2D"]
+[node name="Level!" type="Node2D" groups=["Level"]]
 script = ExtResource("1_kk0y7")
+
+[node name="FinishCircle" parent="." instance=ExtResource("3_vpbov")]
+position = Vector2(899, 304)
+
+[node name="Dino" parent="." instance=ExtResource("4_7fme0")]
+position = Vector2(204, 387)
+disable_mode = 1
+max_speed = 200.0
+acceleration_rate = 0.3
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(158, 488)
@@ -739,17 +919,6 @@ shape = SubResource("RectangleShape2D_u47ps")
 position = Vector2(-159, -414)
 tile_map_data = PackedByteArray("AAAJABkAAAAAAAAAAAAJABoAAAAAAAEAAAAJABsAAAAAAAIAAAAKABkAAAABAAAAAAAKABoAAAABAAEAAAAKABsAAAABAAIAAAALABkAAAACAAAAAAALABoAAAACAAEAAAALABsAAAACAAIAAAAMABkAAAADAAAAAAAMABoAAAADAAEAAAAMABsAAAADAAIAAAANABkAAAAEAAAAAAANABoAAAAEAAEAAAANABsAAAAEAAIAAAAOABkAAAAFAAAAAAAOABoAAAAFAAEAAAAOABsAAAAFAAIAAAAPABkAAAAGAAAAAAAPABoAAAAGAAEAAAAPABsAAAAGAAIAAAAQABkAAAAHAAAAAAAQABoAAAAHAAEAAAAQABsAAAAHAAIAAAARABkAAAAIAAAAAAARABoAAAAIAAEAAAARABsAAAAIAAIAAAASABkAAAAAAAAAAAASABoAAAAAAAEAAAASABsAAAAAAAIAAAATABkAAAABAAAAAAATABoAAAABAAEAAAATABsAAAABAAIAAAAUABkAAAACAAAAAAAUABoAAAACAAEAAAAUABsAAAACAAIAAAAVABkAAAADAAAAAAAVABoAAAADAAEAAAAVABsAAAADAAIAAAAWABkAAAAEAAAAAAAWABoAAAAEAAEAAAAWABsAAAAEAAIAAAAXABkAAAAFAAAAAAAXABoAAAAFAAEAAAAXABsAAAAFAAIAAAAYABkAAAAGAAAAAAAYABoAAAAGAAEAAAAYABsAAAAGAAIAAAAZABkAAAAHAAAAAAAZABoAAAAHAAEAAAAZABsAAAAHAAIAAAAaABkAAAAIAAAAAAAaABoAAAAIAAEAAAAaABsAAAAIAAIAAAAbABkAAAAAAAAAAAAbABoAAAAAAAEAAAAbABsAAAAAAAIAAAAcABkAAAABAAAAAAAcABoAAAABAAEAAAAcABsAAAABAAIAAAAdABkAAAACAAAAAAAdABoAAAACAAEAAAAdABsAAAACAAIAAAAeABkAAAADAAAAAAAeABoAAAADAAEAAAAeABsAAAADAAIAAAAfABkAAAAEAAAAAAAfABoAAAAEAAEAAAAfABsAAAAEAAIAAAAgABkAAAAFAAAAAAAgABoAAAAFAAEAAAAgABsAAAAFAAIAAAAhABkAAAAGAAAAAAAhABoAAAAGAAEAAAAhABsAAAAGAAIAAAAiABkAAAAHAAAAAAAiABoAAAAHAAEAAAAiABsAAAAHAAIAAAAjABkAAAAIAAAAAAAjABoAAAAIAAEAAAAjABsAAAAIAAIAAAAkABkAAAAAAAAAAAAkABoAAAAAAAEAAAAkABsAAAAAAAIAAAAlABkAAAABAAAAAAAlABoAAAABAAEAAAAlABsAAAABAAIAAAAmABkAAAACAAAAAAAmABoAAAACAAEAAAAmABsAAAACAAIAAAAnABkAAAADAAAAAAAnABoAAAADAAEAAAAnABsAAAADAAIAAAAoABkAAAAEAAAAAAAoABoAAAAEAAEAAAAoABsAAAAEAAIAAAApABkAAAAFAAAAAAApABoAAAAFAAEAAAApABsAAAAFAAIAAAAqABkAAAAGAAAAAAAqABoAAAAGAAEAAAAqABsAAAAGAAIAAAArABkAAAAHAAAAAAArABoAAAAHAAEAAAArABsAAAAHAAIAAAAsABkAAAAIAAAAAAAsABoAAAAIAAEAAAAsABsAAAAIAAIAAAAtABkAAAAAAAAAAAAtABoAAAAAAAEAAAAtABsAAAAAAAIAAAAuABkAAAABAAAAAAAuABoAAAABAAEAAAAuABsAAAABAAIAAAAvABkAAAACAAAAAAAvABoAAAACAAEAAAAvABsAAAACAAIAAAAwABkAAAADAAAAAAAwABoAAAADAAEAAAAwABsAAAADAAIAAAAxABkAAAAEAAAAAAAxABoAAAAEAAEAAAAxABsAAAAEAAIAAAAyABkAAAAFAAAAAAAyABoAAAAFAAEAAAAyABsAAAAFAAIAAAAzABkAAAAGAAAAAAAzABoAAAAGAAEAAAAzABsAAAAGAAIAAAA0ABkAAAAHAAAAAAA0ABoAAAAHAAEAAAA0ABsAAAAHAAIAAAA1ABkAAAAIAAAAAAA1ABoAAAAIAAEAAAA1ABsAAAAIAAIAAAA2ABkAAAAAAAAAAAA2ABoAAAAAAAEAAAA2ABsAAAAAAAIAAAA3ABkAAAABAAAAAAA3ABoAAAABAAEAAAA3ABsAAAABAAIAAAA4ABkAAAACAAAAAAA4ABoAAAACAAEAAAA4ABsAAAACAAIAAAA5ABkAAAADAAAAAAA5ABoAAAADAAEAAAA5ABsAAAADAAIAAAA6ABkAAAAEAAAAAAA6ABoAAAAEAAEAAAA6ABsAAAAEAAIAAAA7ABkAAAAFAAAAAAA7ABoAAAAFAAEAAAA7ABsAAAAFAAIAAAA8ABkAAAAGAAAAAAA8ABoAAAAGAAEAAAA8ABsAAAAGAAIAAAA9ABkAAAAHAAAAAAA9ABoAAAAHAAEAAAA9ABsAAAAHAAIAAAA+ABkAAAAIAAAAAAA+ABoAAAAIAAEAAAA+ABsAAAAIAAIAAAA=")
 tile_set = SubResource("TileSet_7fme0")
-
-[node name="FinishCircle" parent="." instance=ExtResource("3_vpbov")]
-position = Vector2(899, 304)
-
-[node name="Dino" parent="." instance=ExtResource("4_7fme0")]
-position = Vector2(203, 388)
-collision_mask = 14
-platform_floor_layers = 4294967042
-platform_wall_layers = 2
-max_speed = 200.0
-acceleration_rate = 0.3
 
 [node name="MainUi" type="Control" parent="."]
 layout_mode = 3
@@ -928,54 +1097,49 @@ theme = ExtResource("18_6p7gy")
 text = "F"
 
 [node name="L2" type="Label" parent="MainUi/AnimationLetters/Letters"]
-visible = false
 layout_mode = 0
-offset_left = 70.0
+offset_left = 205.0
 offset_top = 10.0
-offset_right = 156.0
+offset_right = 291.0
 offset_bottom = 112.0
 theme = ExtResource("18_6p7gy")
 text = "L"
 
 [node name="O3" type="Label" parent="MainUi/AnimationLetters/Letters"]
-visible = false
 layout_mode = 0
-offset_left = 70.0
+offset_left = 340.0
 offset_top = 10.0
-offset_right = 169.0
+offset_right = 439.0
 offset_bottom = 217.0
 theme = ExtResource("18_6p7gy")
 text = "O
 "
 
 [node name="O4" type="Label" parent="MainUi/AnimationLetters/Letters"]
-visible = false
 layout_mode = 0
-offset_left = 70.0
+offset_left = 475.0
 offset_top = 10.0
-offset_right = 169.0
+offset_right = 574.0
 offset_bottom = 217.0
 theme = ExtResource("18_6p7gy")
 text = "O
 "
 
 [node name="R2" type="Label" parent="MainUi/AnimationLetters/Letters"]
-visible = false
 layout_mode = 0
-offset_left = 124.0
+offset_left = 610.0
 offset_top = 10.0
-offset_right = 227.0
+offset_right = 713.0
 offset_bottom = 217.0
 theme = ExtResource("18_6p7gy")
 text = "R
 "
 
 [node name="LevelNumber" type="Label" parent="MainUi/AnimationLetters/Letters"]
-visible = false
 layout_mode = 0
-offset_left = 70.0
+offset_left = 800.0
 offset_top = 10.0
-offset_right = 123.0
+offset_right = 853.0
 offset_bottom = 217.0
 theme = ExtResource("18_6p7gy")
 text = "1"
@@ -1019,6 +1183,7 @@ text = "GO!"
 stream = ExtResource("21_wbydt")
 
 [node name="GOAL" type="Control" parent="MainUi/AnimationLetters"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -1038,12 +1203,110 @@ text = "GOAL!!!"
 stream = ExtResource("23_sfi1e")
 volume_db = -10.0
 
-[node name="Brocolli" type="Node2D" parent="."]
+[node name="YAHOO" type="AudioStreamPlayer" parent="MainUi/AnimationLetters/GOAL"]
+stream = ExtResource("24_os3o5")
+volume_db = -10.0
 
-[node name="Brocolli" parent="Brocolli" instance=ExtResource("24_5jtvf")]
+[node name="LevelScore" type="Control" parent="MainUi"]
+visible = false
+modulate = Color(1, 1, 1, 0.180392)
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 204.0
+offset_right = 100.0
+offset_bottom = 244.0
+script = ExtResource("25_in0pc")
 
-[node name="Brocolli2" parent="Brocolli" instance=ExtResource("24_5jtvf")]
+[node name="ClearLabel" type="Label" parent="MainUi/LevelScore"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 123.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(5.58317e-06, 0, 0.981518, 1)
+theme_override_font_sizes/font_size = 20
+text = "CLEAR SCORE    :"
 
-[node name="Brocolli3" parent="Brocolli" instance=ExtResource("24_5jtvf")]
+[node name="TimeLabel" type="Label" parent="MainUi/LevelScore"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 180.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.882353, 0.890196, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "TIME BONUS   : "
+
+[node name="FloorLabel" type="Label" parent="MainUi/LevelScore"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 66.0
+offset_right = 215.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0.691224, 0.296798, 0.0369992, 1)
+theme_override_font_sizes/font_size = 25
+text = "FLOOR SCORE   :"
+
+[node name="ClearScore" type="Label" parent="MainUi/LevelScore"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 14.0
+offset_right = 234.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0, 0.976471, 1)
+theme_override_font_sizes/font_size = 20
+text = "5085"
+
+[node name="TimeScore" type="Label" parent="MainUi/LevelScore"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 33.0
+offset_right = 232.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(1, 0.777187, 0.249173, 1)
+theme_override_font_sizes/font_size = 20
+text = "x2"
+
+[node name="FloorScore" type="Label" parent="MainUi/LevelScore"]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 45.0
+offset_right = 328.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.583615, 0.295103, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "10170"
+
+[node name="Lifes" parent="MainUi" instance=ExtResource("27_os3o5")]
+layout_mode = 1
+offset_left = 69.0
+offset_top = 137.0
+offset_right = 69.0
+offset_bottom = 137.0
+
+[node name="TimeOver" type="Control" parent="MainUi"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeOverLabel" type="Label" parent="MainUi/TimeOver"]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 291.0
+offset_right = 806.0
+offset_bottom = 401.0
+theme_override_colors/font_color = Color(1, 0.337255, 0.431373, 1)
+theme_override_fonts/font = ExtResource("12_isg1u")
+theme_override_font_sizes/font_size = 100
+text = "TIME OVER"
+
+[node name="TimeOver" type="AudioStreamPlayer" parent="MainUi/TimeOver"]
+stream = ExtResource("27_d33hx")
+volume_db = -10.0
+
+[node name="LevelGenerator" parent="." instance=ExtResource("26_f38bb")]
+
+[node name="ScoreCalculator" parent="." instance=ExtResource("28_x7pk8")]
 
 [connection signal="animation_finished" from="MainUi/LevelStart" to="MainUi/LevelStart" method="_on_animation_finished"]

@@ -4,7 +4,7 @@ extends Area2D
 
 
 func _on_body_entered(body: Dino) -> void:
+	body.on_level_finished()
+	GameManager.is_level_concluded = true 
 	GameManager.can_start_timer = false
-	GameManager.level_finished = true
 	level_animator.play("GOAL")
-	

@@ -1,0 +1,167 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyuw6wqrdbwcw"]
+
+[ext_resource type="Texture2D" uid="uid://cgtxcla8ri3fs" path="res://Images/Dino/DinoLife-removebg-preview.png" id="1_4el30"]
+[ext_resource type="Script" uid="uid://ctrh062xot247" path="res://Scripts/UI/lifes.gd" id="1_ws8bf"]
+
+[sub_resource type="Animation" id="Animation_jcisd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Life2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Life3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ws8bf"]
+resource_name = "life_rotation_1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0133333, 0.513333, 0.983333, 1.48333, 2),
+"transitions": PackedFloat32Array(1.68179, 1, 1, 1, 0.554785),
+"update": 0,
+"values": [0.0, -0.785398, 0.0, 0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Life2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.97, 1.47, 1.98667),
+"transitions": PackedFloat32Array(1.68179, 1, 1, 1, 0.554785),
+"update": 0,
+"values": [0.0, -0.785398, 0.0, 0.785398, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Life3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.97, 1.47, 1.98667),
+"transitions": PackedFloat32Array(1.68179, 1, 1, 1, 0.554785),
+"update": 0,
+"values": [0.0, -0.785398, 0.0, 0.785398, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4el30"]
+resource_name = "life_rotation_2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0166667, 0.483333, 0.983333, 1.48333, 1.99167),
+"transitions": PackedFloat32Array(0.554785, 1, 1, 1, 1.68179),
+"update": 0,
+"values": [0.0, 0.785398, 0.0, -0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Life2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(0.554785, 1, 1, 1, 1.68179),
+"update": 0,
+"values": [0.0, 0.785398, 0.0, -0.785398, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Life3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(0.554785, 1, 1, 1, 1.68179),
+"update": 0,
+"values": [0.0, 0.785398, 0.0, -0.785398, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tiy3g"]
+_data = {
+&"RESET": SubResource("Animation_jcisd"),
+&"life_rotation_1": SubResource("Animation_ws8bf"),
+&"life_rotation_2": SubResource("Animation_4el30")
+}
+
+[node name="Lifes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ws8bf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Life" type="Sprite2D" parent="HBoxContainer"]
+texture = ExtResource("1_4el30")
+
+[node name="Life2" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(219, -3)
+texture = ExtResource("1_4el30")
+
+[node name="Life3" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(437, -5)
+texture = ExtResource("1_4el30")
+
+[node name="LifeAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HBoxContainer/Life")
+libraries = {
+&"": SubResource("AnimationLibrary_tiy3g")
+}
+
+[node name="ChangeAnimationTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="animation_finished" from="LifeAnimationPlayer" to="." method="_on_life_animation_player_animation_finished"]
+[connection signal="timeout" from="ChangeAnimationTimer" to="." method="_on_change_animation_timer_timeout"]

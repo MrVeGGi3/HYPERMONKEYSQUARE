@@ -1,16 +1,14 @@
 extends Levels
 
+
 func _ready() -> void:
-	GameManager.is_level_concluded = false
-	level_number = 1
-	max_time = 30.00
-	difficulty = "Begginer"
+	level_animator = $MainUi/LevelStart
+	set_level_status(1, "Begginer", 1000.00, 30.00)
 	updateGameManagerStatus()
 
 
 func _process(delta: float) -> void:
-	if GameManager.is_level_concluded:
-		time_record = max_time - GameManager.time_passed
-		phase_concluded = true
-		Save()
+	check_level_conclusion()
+	check_overfall_status(588.0)
+	check_time_over()
 		

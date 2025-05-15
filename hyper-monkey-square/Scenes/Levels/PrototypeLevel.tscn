@@ -9,8 +9,6 @@ size = Vector2(702, 62)
 
 [node name="Dino" parent="." instance=ExtResource("1_rc2gp")]
 position = Vector2(224, 256)
-platform_floor_layers = 4294967042
-platform_wall_layers = 2
 max_speed = 190.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
