@@ -57,18 +57,26 @@ func _process(delta: float) -> void:
 	
 		
 func get_velocity_x():
-	return abs(velocity.x)
+	return abs(int(velocity.x))
 
 func eatSound():
 	eat.play()
 	
 func die():
-	GameManager.lifes -= 1
-	GameManager.can_start_timer = false
-	get_tree().reload_current_scene()
+	if GameManager.lifes >= 0:
+		GameManager.lifes -= 1
+		GameManager.can_start_timer = false
+		get_tree().reload_current_scene()
+		
 
 func on_level_finished():
 	GameManager.level_finished = true
 	current_state = State.HAPPY
 	emit_signal("state_changed", current_state)
 	set_physics_process(false)
+
+func add_velocity(vel : float):
+	velocity.x += vel
+
+func add_impulse(jump_force : float):
+	velocity.y -= jump_force

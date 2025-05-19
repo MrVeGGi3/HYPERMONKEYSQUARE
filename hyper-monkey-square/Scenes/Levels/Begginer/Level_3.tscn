@@ -1,9 +1,9 @@
-[gd_scene load_steps=48 format=4 uid="uid://dch76xnmrkrh5"]
+[gd_scene load_steps=52 format=4 uid="uid://dch76xnmrkrh5"]
 
 [ext_resource type="Script" uid="uid://2o0h6ei7cpq8" path="res://Scripts/Levels/level_3.gd" id="1_tiwmj"]
 [ext_resource type="Script" uid="uid://bxvcwy8i8lspu" path="res://Scripts/UI/level_name.gd" id="2_c3m8c"]
-[ext_resource type="PackedScene" uid="uid://b3c5s00vgwaps" path="res://Scenes/Player/FinishCircle.tscn" id="2_vaad4"]
-[ext_resource type="PackedScene" uid="uid://b5l0we2uc70j7" path="res://Scenes/Player/Dino.tscn" id="3_pxx5h"]
+[ext_resource type="PackedScene" uid="uid://b3c5s00vgwaps" path="res://Player/FinishCircle.tscn" id="2_vaad4"]
+[ext_resource type="PackedScene" uid="uid://b5l0we2uc70j7" path="res://Scenes/Dino.tscn" id="3_pxx5h"]
 [ext_resource type="FontFile" uid="uid://cw2hahl38r837" path="res://Assets/Font/Ash.ttf" id="3_yjcbf"]
 [ext_resource type="Texture2D" uid="uid://by4l2e7ljjdwu" path="res://Assets/Image/GameCube - Super Monkey Ball - Difficulty Icons.png" id="4_vaad4"]
 [ext_resource type="Script" uid="uid://bv64o5qcwws5w" path="res://Scripts/UI/velocimeter.gd" id="5_7l68d"]
@@ -27,8 +27,11 @@
 [ext_resource type="PackedScene" uid="uid://dyuw6wqrdbwcw" path="res://Scenes/UI/Lifes.tscn" id="23_lgrsu"]
 [ext_resource type="AudioStream" uid="uid://dofryk26vyays" path="res://Assets/Audios/SFX/TimeOver.wav" id="24_nf0xv"]
 [ext_resource type="Texture2D" uid="uid://q53oey3odbr" path="res://Images/Platform1.png" id="25_yjcbf"]
+[ext_resource type="AudioStream" uid="uid://ed112pn6maji" path="res://Assets/Audios/SFX/GameOver.wav" id="26_77gvf"]
 [ext_resource type="PackedScene" uid="uid://scluv1pkvog5" path="res://Scenes/Levels/ScoreCalculator.tscn" id="27_7l68d"]
 [ext_resource type="PackedScene" uid="uid://cjd6qeskdm2g1" path="res://Scenes/Levels/LevelGenerator.tscn" id="28_ogh1q"]
+[ext_resource type="PackedScene" uid="uid://3273eh0jmpfx" path="res://Scenes/Objects/MovingPlatform.tscn" id="30_51h6l"]
+[ext_resource type="PackedScene" uid="uid://ltj45qs37ygm" path="res://Scenes/Objects/Brocolli.tscn" id="30_820d5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vaad4"]
 texture = ExtResource("25_yjcbf")
@@ -225,6 +228,118 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_2cou3"]
+resource_name = "GAME OVER"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationLetters/Letters:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationLetters/Ready:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/GO:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationLetters/GOAL:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LevelScore:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TimeOver:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0666667, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationLetters/GAME OVER/GameOver:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationLetters:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_0qsyn"]
 resource_name = "GO"
 length = 1.5
@@ -324,6 +439,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qsyrj"]
 resource_name = "GOAL"
@@ -411,6 +538,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_1kow2"]
@@ -507,6 +646,18 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(-0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -622,6 +773,30 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimationLetters/GAME OVER/GameOver:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2v25o"]
 resource_name = "SCORE"
@@ -688,6 +863,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_upwrp"]
@@ -885,9 +1072,22 @@ tracks/15/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AnimationLetters/GAME OVER:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxqpb"]
 _data = {
+&"GAME OVER": SubResource("Animation_2cou3"),
 &"GO": SubResource("Animation_0qsyn"),
 &"GOAL": SubResource("Animation_qsyrj"),
 &"READY": SubResource("Animation_1kow2"),
@@ -929,6 +1129,28 @@ debug_color = Color(0.96602, 0, 0.483122, 0.42)
 position = Vector2(934, 194.5)
 shape = SubResource("RectangleShape2D_pxx5h")
 debug_color = Color(0.969075, 0, 0.463732, 0.42)
+
+[node name="MovingPlatform" parent="." instance=ExtResource("30_51h6l")]
+position = Vector2(742, 544)
+scale = Vector2(0.806887, 0.806887)
+height_range = 50
+radius_range = 50
+minimal_erro = 0.5
+
+[node name="Brocolli" type="Node2D" parent="."]
+position = Vector2(375, 441)
+
+[node name="Brocolli" parent="Brocolli" instance=ExtResource("30_820d5")]
+position = Vector2(55, 10)
+scale = Vector2(4.26234, 4.26234)
+
+[node name="Brocolli3" parent="Brocolli" instance=ExtResource("30_820d5")]
+position = Vector2(536, 32)
+scale = Vector2(3.87083, 3.87083)
+
+[node name="Brocolli2" parent="Brocolli" instance=ExtResource("30_820d5")]
+position = Vector2(369, 5)
+scale = Vector2(3.87083, 3.87083)
 
 [node name="MainUi" type="Control" parent="."]
 layout_mode = 3
@@ -1078,6 +1300,7 @@ theme_override_font_sizes/font_size = 25
 text = "10 / 100"
 
 [node name="LevelStart" type="AnimationPlayer" parent="MainUi"]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_mxqpb")
 }
@@ -1107,39 +1330,43 @@ theme = ExtResource("15_dql5w")
 text = "F"
 
 [node name="L2" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
 layout_mode = 0
-offset_left = 205.0
+offset_left = 70.0
 offset_top = 10.0
-offset_right = 291.0
+offset_right = 156.0
 offset_bottom = 112.0
 theme = ExtResource("15_dql5w")
 text = "L"
 
 [node name="O3" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
 layout_mode = 0
-offset_left = 340.0
+offset_left = 70.0
 offset_top = 10.0
-offset_right = 439.0
+offset_right = 169.0
 offset_bottom = 217.0
 theme = ExtResource("15_dql5w")
 text = "O
 "
 
 [node name="O4" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
 layout_mode = 0
-offset_left = 475.0
+offset_left = 70.0
 offset_top = 10.0
-offset_right = 574.0
+offset_right = 169.0
 offset_bottom = 217.0
 theme = ExtResource("15_dql5w")
 text = "O
 "
 
 [node name="R2" type="Label" parent="MainUi/AnimationLetters/Letters"]
+visible = false
 layout_mode = 0
-offset_left = 610.0
+offset_left = 124.0
 offset_top = 10.0
-offset_right = 713.0
+offset_right = 227.0
 offset_bottom = 217.0
 theme = ExtResource("15_dql5w")
 text = "R
@@ -1147,9 +1374,9 @@ text = "R
 
 [node name="LevelNumber" type="Label" parent="MainUi/AnimationLetters/Letters"]
 layout_mode = 0
-offset_left = 800.0
+offset_left = 70.0
 offset_top = 10.0
-offset_right = 853.0
+offset_right = 123.0
 offset_bottom = 217.0
 theme = ExtResource("15_dql5w")
 text = "1"
@@ -1217,9 +1444,28 @@ volume_db = -10.0
 stream = ExtResource("21_xa1j2")
 volume_db = -10.0
 
+[node name="GAME OVER" type="Control" parent="MainUi/AnimationLetters"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverLabel" type="Label" parent="MainUi/AnimationLetters/GAME OVER"]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 63.0
+offset_right = 731.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(0.658824, 0, 0, 1)
+theme_override_fonts/font = ExtResource("19_bg8n4")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="MainUi/AnimationLetters/GAME OVER"]
+stream = ExtResource("26_77gvf")
+
 [node name="LevelScore" type="Control" parent="MainUi"]
 visible = false
-modulate = Color(1, 1, 1, 0.180392)
 anchors_preset = 0
 offset_left = 60.0
 offset_top = 204.0

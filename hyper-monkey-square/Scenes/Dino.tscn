@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://b5l0we2uc70j7"]
 
-[ext_resource type="Script" uid="uid://cix6pou526387" path="res://Scripts/Dino.gd" id="1_6fi21"]
+[ext_resource type="Script" uid="uid://cix6pou526387" path="res://Scripts/Dino/Dino.gd" id="1_6fi21"]
 [ext_resource type="Texture2D" uid="uid://bett1cpbgjj1h" path="res://Images/Dino/Happy/Dinossauro_Comemorando_-_1-.png" id="2_1wpqp"]
 [ext_resource type="Texture2D" uid="uid://clj8h8jk5rfvy" path="res://Images/Dino/Dino.png" id="2_s5bdh"]
 [ext_resource type="Texture2D" uid="uid://dd1m42wf2lwja" path="res://Images/Dino/Dino_Walk_1.png" id="3_0mydp"]
@@ -91,7 +91,7 @@ animations = [{
 }]
 
 [node name="Dino" type="CharacterBody2D" groups=["Dino"]]
-collision_mask = 14
+collision_mask = 30
 platform_floor_layers = 4294967042
 platform_wall_layers = 2
 script = ExtResource("1_6fi21")

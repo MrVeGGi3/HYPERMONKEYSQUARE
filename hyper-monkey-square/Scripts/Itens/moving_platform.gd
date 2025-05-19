@@ -1,11 +1,16 @@
+class_name Platform
 extends TileMapLayer
 
-@export_range(10,100,5)
+@export_range(10,400,5)
 var height_range : int
-@export_range(10,100,5)
+@export_range(10,1000,5)
 var radius_range : int
-@export_range(10,200,10)
+@export_range(10,400,10)
 var speed : float = 100
+@export_range(0.1,2,0.1)
+var angle_speed = 0.1
+@export 
+var minimal_erro : float = 3.0
 
 var first_point
 var second_point
@@ -38,6 +43,7 @@ enum DirectionType
 
 func _ready() -> void:
 	_check_direction_type(direction_type)
+	print("Chequei o tipo de direction")
 	
 func _physics_process(delta: float) -> void:
 	if direction_type == DirectionType.UPDOWN:
@@ -71,85 +77,79 @@ func _check_direction_type(t_direction):
 			
 			
 func set_up_down_behaviour():
-	first_point = global_position.y + height_range
-	second_point = global_position.y - height_range
+	first_point = Vector2(global_position.x, global_position.y + height_range)
+	second_point = Vector2(global_position.x, global_position.y - height_range)
 	next_position = first_point
 func set_left_right_behaviour():
-	first_point = global_position.x + radius_range
-	second_point = global_position.x - radius_range
+	first_point = Vector2(global_position.x + radius_range, global_position.y)
+	second_point = Vector2(global_position.x - radius_range, global_position.y)
 	next_position = first_point
 func set_diagonal_left_behaviour():
-	var first_point = global_position + Vector2(global_position.x - radius_range, global_position.y + height_range)
-	var second_point = global_position
+	first_point = global_position + Vector2(-radius_range, -height_range)
+	second_point = global_position + Vector2(radius_range, height_range)
 	next_position = first_point
+	
 func set_diagonal_right_behaviour():
-	var first_point = global_position + Vector2(global_position.x + radius_range, global_position.y - height_range)
-	var second_point = global_position
+	first_point = global_position + Vector2(radius_range, -height_range)
+	second_point = global_position + Vector2(-radius_range, height_range)
 	next_position = first_point
+	
 func set_circular_behaviour():
 	circle_center = Vector2(global_position.x + radius_range, global_position.y)
 	
 	
 	
 func update_move_down_movement():
-	var direction = (next_position - global_position.y).normalized()
-	if global_position.y != next_position:
-		if global_position.y < next_position:
-			position.y += speed * get_physics_process_delta_time()
-		elif global_position.y > next_position:
-			position.y -= speed * get_physics_process_delta_time()
+	print("Posição global é", global_position.y)
+	print("Posição alvo é",  next_position.y)
+	
+	var direction = (next_position - Vector2(0, global_position.y)).normalized()
+	if global_position.distance_to(next_position) > minimal_erro:
+		if global_position.y < next_position.y:
+			global_position.y += speed * get_physics_process_delta_time()
+		elif global_position.y > next_position.y:
+			global_position.y -= speed * get_physics_process_delta_time()
 	else:
 		going_up = !going_up
 	
-	if going_up:
-		next_position = second_point
-	else:
-		next_position = first_point
+	check_changing_direction(going_up)
+	
 func update_left_right_movement():
-	var direction = (next_position - global_position.x).normalized()
-	if global_position.x != next_position:
-		if global_position.x < next_position:
-			position.x += speed * get_physics_process_delta_time()
-		elif global_position.x > next_position:
-			position.x -= speed * get_physics_process_delta_time()
+	if global_position.distance_to(next_position) >=  minimal_erro:
+		if global_position.x < next_position.x:
+			global_position.x += speed * get_physics_process_delta_time()
+		elif global_position.x > next_position.x:
+			global_position.x -= speed * get_physics_process_delta_time()
 	else:
-		going_left = !going_left
+		going_left = !going_left	
 			
-	if going_left:
-		next_position = second_point
-	else:
-		next_position = first_point		
+	check_changing_direction(going_left)
+		
 func update_diagonal_left_movement():
 	var direction = (next_position - global_position).normalized()
-	if global_position != next_position:
-		if global_position < next_position:
-			position -= Vector2(speed,speed) * get_physics_process_delta_time()
-		elif global_position.x > next_position:
-			position += Vector2(speed, speed) * get_physics_process_delta_time()
+	if global_position.distance_to(next_position) >= minimal_erro:
+			global_position += direction * speed * get_physics_process_delta_time()
 	else:
 		going_diag = !going_diag
-			
-	if going_diag:
-		next_position = second_point
-	else:
-		next_position = first_point
+	check_changing_direction(going_diag)	
+	
 func update_diagonal_right_movement():
 	var direction = (next_position - global_position).normalized()
-	if global_position != next_position:
-		if global_position < next_position:
-			position += Vector2(speed,speed) * get_physics_process_delta_time()
-		elif global_position.x > next_position:
-			position -= Vector2(speed, speed) * get_physics_process_delta_time()
+	if global_position.distance_to(next_position) > minimal_erro:
+			global_position += direction * speed * get_physics_process_delta_time()
 	else:
-		going_diag = !going_diag
-			
-	if going_diag:
+		going_diag = !going_diag		
+	check_changing_direction(going_diag)
+	
+func update_circular_clockwise_movement():
+	angle += angle_speed * get_physics_process_delta_time()
+	global_position = circle_center + Vector2(cos(angle), sin(angle)) * radius_range
+func update_circular_c_clockwise_movement():
+	angle -= angle_speed * get_physics_process_delta_time()
+	global_position = circle_center + Vector2(cos(angle), sin(angle)) * radius_range
+
+func check_changing_direction(bool_type : bool):
+	if bool_type:
 		next_position = second_point
 	else:
 		next_position = first_point
-func update_circular_clockwise_movement():
-	angle += speed * get_physics_process_delta_time()
-	position = circle_center + Vector2(cos(angle), sin(angle)) * radius_range
-func update_circular_c_clockwise_movement():
-	angle -= speed * get_physics_process_delta_time()
-	position = circle_center + Vector2(cos(angle), sin(angle)) * radius_range

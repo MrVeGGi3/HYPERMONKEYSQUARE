@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://3273eh0jmpfx"]
+[gd_scene load_steps=7 format=4 uid="uid://3273eh0jmpfx"]
 
 [ext_resource type="Texture2D" uid="uid://xv67ki35rw17" path="res://Images/Platform2.png" id="1_xtdv4"]
 [ext_resource type="Script" uid="uid://bi8rqxu31gpvy" path="res://Scripts/Itens/moving_platform.gd" id="2_5pq8e"]
@@ -181,6 +181,9 @@ texture = ExtResource("1_xtdv4")
 [sub_resource type="TileSet" id="TileSet_uip2u"]
 sources/0 = SubResource("TileSetAtlasSource_5pq8e")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5pq8e"]
+absorbent = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mciqb"]
 size = Vector2(271, 65)
 
@@ -191,6 +194,7 @@ script = ExtResource("2_5pq8e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_5pq8e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(8.5, 0.5)

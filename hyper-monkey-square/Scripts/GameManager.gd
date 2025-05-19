@@ -1,7 +1,7 @@
 extends Node
 
 var phase_dificulty : String #Dificuldade da Fase
-var max_brocolli : int = 100 # Quantidade Máxima de Brócolis que podem ser coletados
+var max_brocolli : int = 60 # Quantidade Máxima de Brócolis que podem ser coletados
 var brocolli : int = 0 # Quantidade de Brócolis coletados
 var actual_level : int # Nível atual que está sendo jogado
 var time_to_complete : float #Tempo para o player concluir a fase
@@ -40,8 +40,6 @@ func _process(delta: float) -> void:
 				
 	if lifes <= 0:
 		total_score = 0
-		lifes = 3
-		get_tree().reload_current_scene()
 
 func _calculate_score():
 	print(clear_ratio)

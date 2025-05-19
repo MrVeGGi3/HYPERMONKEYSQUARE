@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var brocolli_animation: AnimationPlayer = $BrocolliAnimation
 
+
 func _on_body_entered(body: Dino) -> void:
 	GameManager.brocolli += 1
 	brocolli_animation.play("brocolli_catched")

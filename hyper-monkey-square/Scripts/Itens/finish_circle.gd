@@ -1,7 +1,6 @@
 extends Area2D
 
-@onready var level_animator: AnimationPlayer = $"../MainUi/LevelStart"
-
+@onready var level_animator: AnimationPlayer = %LevelStart
 
 func _on_body_entered(body: Dino) -> void:
 	body.on_level_finished()

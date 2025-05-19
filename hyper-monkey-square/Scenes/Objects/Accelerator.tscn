@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://y7466yp0ky5q"]
+
+[ext_resource type="Script" uid="uid://difbns63ytuxx" path="res://Scripts/Itens/accelerator.gd" id="1_1u2aq"]
+[ext_resource type="Texture2D" uid="uid://chludi77nbwfa" path="res://Images/Accelerator/Acellerator (2).png" id="1_ejxq4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejxq4"]
+size = Vector2(112, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u2aq"]
+size = Vector2(78.0396, 41.9274)
+
+[node name="Accelerator" type="Node2D"]
+script = ExtResource("1_1u2aq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, -51)
+scale = Vector2(0.460521, 0.460521)
+texture = ExtResource("1_ejxq4")
+
+[node name="FirstSprint" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstSprint"]
+position = Vector2(-39, 9)
+shape = SubResource("RectangleShape2D_ejxq4")
+
+[node name="SecondSprint" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecondSprint"]
+position = Vector2(61.1834, -21.9555)
+rotation = -0.603884
+shape = SubResource("RectangleShape2D_1u2aq")
+debug_color = Color(0.883885, 0.280824, 0.469484, 0.42)
+
+[connection signal="body_entered" from="FirstSprint" to="." method="_on_first_sprint_body_entered"]
+[connection signal="body_entered" from="SecondSprint" to="." method="_on_second_sprint_body_entered"]

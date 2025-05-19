@@ -4,4 +4,4 @@ extends Control
 @onready var velocimeter_label: Label = $VelocimeterLabel
 
 func _process(delta: float) -> void:
-	velocimeter_label.text = str(int(GameManager.player_velocity))+ " " +  "mps"
+	velocimeter_label.text = str(GameManager.player_velocity)+ " " +  "mps"

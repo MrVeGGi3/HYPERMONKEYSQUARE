@@ -42,7 +42,7 @@ func set_level_status(l_number: int, diff : String, l_score : float, t_max : flo
 	score_level = l_score
 	max_time = t_max
 
-
+##Update GameManager initial settings before run
 func updateGameManagerStatus():
 	GameManager.time_over = false
 	GameManager.is_level_concluded = false
@@ -57,7 +57,7 @@ func updateGameManagerStatus():
 func check_overfall_status(height : float):
 	if dino.position.y > height:
 		dino.die()
-		
+##Check if the level is concluded and set the calculus of score
 func check_level_conclusion():
 	if GameManager.is_level_concluded:
 		time_record = max_time - GameManager.time_passed
@@ -66,7 +66,7 @@ func check_level_conclusion():
 		if !is_lf_signal_emmited:
 			emit_signal("level_finished")
 		Save()
-
+##Check if the time is over
 func check_time_over():
 	if GameManager.time_over and !is_time_over_emmited:
 		emit_signal("is_time_over")

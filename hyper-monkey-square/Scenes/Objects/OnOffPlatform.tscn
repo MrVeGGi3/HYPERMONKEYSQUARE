@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8s2cn6e0tcck"]
+
+[ext_resource type="Script" uid="uid://bm50ia5urg6b0" path="res://Scripts/Itens/on_off_platform.gd" id="1_fc1uk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fc1uk"]
+size = Vector2(200, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojrhp"]
+size = Vector2(200, 40)
+
+[sub_resource type="Animation" id="Animation_vp46g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.239216, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fc1uk"]
+resource_name = "flip_flop"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.23, 0.4, 0.61, 0.81, 1.05, 1.27, 1.5, 1.75, 1.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.239216, 0, 1), Color(1, 0.239216, 0, 0), Color(1, 0.239216, 0, 1), Color(1, 0.239216, 0, 0), Color(1, 0.239216, 0, 1), Color(1, 0.239216, 0, 0), Color(1, 0.239216, 0, 1), Color(1, 0.239216, 0, 0), Color(1, 0.239216, 0, 1), Color(1, 0.239216, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vp46g"]
+_data = {
+&"RESET": SubResource("Animation_vp46g"),
+&"flip_flop": SubResource("Animation_fc1uk")
+}
+
+[node name="OnOffPlatform" type="MeshInstance2D"]
+modulate = Color(1, 0.239216, 0, 1)
+mesh = SubResource("QuadMesh_fc1uk")
+script = ExtResource("1_fc1uk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ojrhp")
+debug_color = Color(0.973778, 0, 0.431553, 0.42)
+
+[node name="DeactivatorTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="FlipFlopTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="OnOffPlatAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vp46g")
+}
+
+[connection signal="timeout" from="DeactivatorTimer" to="." method="_on_deactivator_timer_timeout"]
+[connection signal="timeout" from="FlipFlopTimer" to="." method="_on_flip_flop_timer_timeout"]
+[connection signal="animation_finished" from="OnOffPlatAnimation" to="." method="_on_on_off_plat_animation_animation_finished"]
