@@ -10,14 +10,19 @@ config_version=5
 
 [application]
 
-config/name="Super Monkey Ball 2D"
+config/name="HyperMonkeySquare"
 run/main_scene="uid://dvkgsfoyif1mc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.239127, 8.89456e-05, 0.271213, 1)
+config/icon="uid://dysmfilmah34o"
 
 [autoload]
 
 GameManager="*res://Scripts/GameManager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [global_group]
 
@@ -63,3 +68,5 @@ right={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.00174647, 0.157324, 0.240952, 1)

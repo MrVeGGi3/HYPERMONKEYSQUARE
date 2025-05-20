@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var go_to_menu: Timer = $GoToMenu
-const MAIN_MENU = "res://Scenes/MainMenu.tscn"
+const MAIN_MENU = "res://Scenes/LevelManagement/MainMenu.tscn"
 
 func _ready() -> void:
 	go_to_menu.start()
